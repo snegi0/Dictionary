@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Dictionary</string>
+    <string name="tab_text_1">Поиск</string>
+    <string name="tab_text_2">Опции</string>
+</resources>
