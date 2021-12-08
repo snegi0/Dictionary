@@ -13,29 +13,23 @@
         android:layout_height="match_parent">
 
         <AutoCompleteTextView
-            android:id="@+id/autoCompleteTextView"
+            android:id="@+id/word_in"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
-            android:layout_marginEnd="10dp"
             android:layout_marginBottom="5dp"
             android:textSize="34sp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/button3"
+            app:layout_constraintEnd_toStartOf="@+id/searchButton"
             app:layout_constraintStart_toStartOf="parent" />
 
-        <Button
-            android:id="@+id/button3"
-            android:layout_width="0dp"
+        <ImageButton
+            android:id="@+id/searchButton"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-
             android:layout_marginEnd="10dp"
             android:layout_marginBottom="5dp"
-            android:layout_weight="0"
-            android:backgroundTint="#000000"
-            android:backgroundTintMode="add"
-            android:background="@android:drawable/ic_menu_search"
-
+            android:src="@drawable/ic_search"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />
 
@@ -46,7 +40,7 @@
             android:layout_marginTop="10dp"
             android:layout_marginBottom="20dp"
             android:layout_weight="1"
-            app:layout_constraintBottom_toTopOf="@+id/autoCompleteTextView"
+            app:layout_constraintBottom_toTopOf="@+id/word_in"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">

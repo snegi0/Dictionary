@@ -12,9 +12,13 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.Spinner;
 
 import com.example.dictionary.ui.main.SectionsPagerAdapter;
 import com.example.dictionary.databinding.ActivityMainBinding;
+
+import java.util.*;
 
 public class MainActivity extends AppCompatActivity {
 
