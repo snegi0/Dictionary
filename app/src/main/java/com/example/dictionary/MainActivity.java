@@ -1,24 +1,27 @@
 package com.example.dictionary;
 
+import android.content.Intent;
 import android.os.Bundle;
 
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
+import com.example.dictionary.ui.main.SectionsPagerAdapter;
+import com.google.android.material.tabs.TabItem;
 import com.google.android.material.tabs.TabLayout;
 
+import androidx.fragment.app.FragmentPagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.view.Menu;
-import android.view.MenuItem;
+import android.os.Parcelable;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
+import android.widget.TextView;
 
-import com.example.dictionary.ui.main.SectionsPagerAdapter;
 import com.example.dictionary.databinding.ActivityMainBinding;
 
-import java.util.*;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -30,12 +33,20 @@ public class MainActivity extends AppCompatActivity {
 
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-
         SectionsPagerAdapter sectionsPagerAdapter = new SectionsPagerAdapter(this, getSupportFragmentManager());
         ViewPager viewPager = binding.viewPager;
         viewPager.setAdapter(sectionsPagerAdapter);
         TabLayout tabs = binding.tabs;
         tabs.setupWithViewPager(viewPager);
 
+        //Intent intent = new Intent(this, Options.class);
+        //intent.putExtra("spiner", (Spinner) findViewById(R.id.spinner_language));
+
+    }
+    public void SEARCH(View view) throws IOException {
+        TextView result = (TextView) findViewById(R.id.textView);;
+        result.setText("ujdyj");
+
+        //spinner.setAdapter(adapter);
     }
 }

@@ -1,6 +1,7 @@
 package com.example.dictionary.ui.main;
 
 import android.content.Context;
+import android.widget.Spinner;
 
 import androidx.annotation.Nullable;
 import androidx.annotation.StringRes;
@@ -37,7 +38,7 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter {
             case 1:
                 return new Options();
             default:
-                return new PlaceholderFragment();
+                return new Search();
         }
     }
 
