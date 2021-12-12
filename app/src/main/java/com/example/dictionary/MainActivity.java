@@ -1,5 +1,6 @@
 package com.example.dictionary;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -19,11 +20,15 @@ import android.widget.TextView;
 
 import com.example.dictionary.databinding.ActivityMainBinding;
 
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity<AndroidBasicThreadActivity> extends AppCompatActivity {
 
     private ActivityMainBinding binding;
 
@@ -39,14 +44,10 @@ public class MainActivity extends AppCompatActivity {
         TabLayout tabs = binding.tabs;
         tabs.setupWithViewPager(viewPager);
 
+
         //Intent intent = new Intent(this, Options.class);
         //intent.putExtra("spiner", (Spinner) findViewById(R.id.spinner_language));
 
     }
-    public void SEARCH(View view) throws IOException {
-        TextView result = (TextView) findViewById(R.id.textView);;
-        result.setText("ujdyj");
 
-        //spinner.setAdapter(adapter);
-    }
 }

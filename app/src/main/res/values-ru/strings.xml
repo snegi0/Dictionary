@@ -3,4 +3,8 @@
     <string name="app_name">Dictionary</string>
     <string name="tab_text_1">Поиск</string>
     <string name="tab_text_2">Опции</string>
+    <string-array name="sp_lang">
+        <item>Английский</item>
+        <item>Русский</item>
+    </string-array>
 </resources>
