@@ -63,6 +63,7 @@ public class Parser{
                 } catch (IOException e) {
                     builder.append("Error : ").append(e.getMessage()).append("\n");
                 }
+
                 activity.post(new Runnable() {
                     @RequiresApi(api = Build.VERSION_CODES.N)
                     @Override

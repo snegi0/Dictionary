@@ -7,9 +7,11 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 
 public class Search extends Fragment {
@@ -29,23 +31,15 @@ public class Search extends Fragment {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Parser pars =new Parser("hi","https://www.oxfordlearnersdictionaries.com/definition/english/",result);
+                AutoCompleteTextView search_w = rootView.findViewById(R.id.word_in);
+                String message = search_w.getText().toString().replaceAll("( +)"," ").trim();
+                if(message.equals("")){
+                    Toast.makeText(rootView.getContext(), "ERROR", Toast.LENGTH_SHORT).show();
+                }
+                else {
+                    Parser pars = new Parser(message, "https://www.oxfordlearnersdictionaries.com/definition/english/", result);
+                }
 
-
-
-
-
-//                String Text = null;
-//                while (true){
-//                    Text = pars.getText();
-//                    if(Text.length()<5){
-//                        result.setText("Загрузка...");
-//                    }else {
-//                        result.setText(Text);
-//                        break;
-//                    }
-//                }
-                //result.setText((String)pars.getText());
             }
         });
 
