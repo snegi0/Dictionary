@@ -6,6 +6,7 @@ import android.os.Build;
 import android.text.Html;
 import android.text.method.ScrollingMovementMethod;
 import android.view.View;
+import android.webkit.WebView;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -30,12 +31,13 @@ public class Parser{
     private String Text;
     private String Word;
     private String URL;
-    private TextView activity;
+
+    private WebView activity;
     static StringBuffer builder = new StringBuffer();
     //private static Document doc;
     //rivate static Element base;
 
-    public Parser(String word, String URL, TextView activity) {
+    public Parser(String word, String URL, WebView activity) {
         this.Word = word;
         this.URL = URL;
         this.activity=activity;
@@ -54,10 +56,24 @@ public class Parser{
             public void run() {
                 try {
                     //builder.append("2Выполнено");
-                    Document doc = Jsoup.connect(URL+Word).get();
-                    Element infor = doc.select("div[class=entry]").first();
 
-                    builder.append(infor);
+                    Document doc = Jsoup.connect(URL+Word).get();
+//                    Element head = doc.select("head").first();
+                    Element infor = doc.select("div[class=entry]").first();
+                    Element delet = doc.select("div[id=\"ox-container\"]").first();
+                    Elements script = doc.body().select("script");
+                    delet.remove();
+                    doc.body().before(infor.html());
+                    doc.body().append(script.html());
+//                    Elements iframe = doc.select("iframe");
+//                    Element delet = infor.select("div[id=\"ring-links-box\"]").first();
+//                    delet.remove();
+//                    builder.append("<html xmlns=\"http://www.w3.org/1999/xhtml\" xml:lang=\"en\" lang=\"en\">");
+//                    builder.append(head);
+//                    builder.append(infor);
+//                    builder.append(doc.select("app-content"));
+//                    builder.append(iframe);
+                   builder.append(doc);
 
 
                 } catch (IOException e) {
@@ -68,7 +84,7 @@ public class Parser{
                     @RequiresApi(api = Build.VERSION_CODES.N)
                     @Override
                     public void run() {
-                        activity.setText(Html.fromHtml(builder.toString(), Html.FROM_HTML_MODE_COMPACT));
+                        activity.loadData(builder.toString(),"text/html; charset=utf-8", "utf-8");
                     }
                 });
             }
