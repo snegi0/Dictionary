@@ -59,12 +59,12 @@ public class Parser{
 
                     Document doc = Jsoup.connect(URL+Word).get();
 //                    Element head = doc.select("head").first();
-                    Element infor = doc.select("div[class=entry]").first();
-                    Element delet = doc.select("div[id=\"ox-container\"]").first();
-                    Elements script = doc.body().select("script");
-                    delet.remove();
-                    doc.body().before(infor.html());
-                    doc.body().append(script.html());
+//                    Element infor = doc.select("div[class=entry]").first();
+//                    Element delet = doc.select("div[id=\"ox-container\"]").first();
+//                    Elements script = doc.body().select("script");
+//                    delet.remove();
+//                    doc.body().before(infor.html());
+//                    doc.body().append(script.html());
 //                    Elements iframe = doc.select("iframe");
 //                    Element delet = infor.select("div[id=\"ring-links-box\"]").first();
 //                    delet.remove();
