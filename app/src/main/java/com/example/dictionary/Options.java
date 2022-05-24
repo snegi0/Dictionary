@@ -14,6 +14,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
+import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
@@ -65,22 +68,38 @@ public class Options extends Fragment {
                 langPos = position;
                 Llist = new ReaderLList(context,ldir.getStates().get(position));
                 ArrayList<String> S = Llist.getS();
-
-
-
+                ArrayList<CheckBox> checkBoxes = new ArrayList<CheckBox>();
 
                 radioGroup.removeAllViews();
 
                 for (int i=0; i< S.size();i++){
-                    RadioButton newRadioButton = new RadioButton(rootView.getContext());
-                    if (i == 0) {
-                        newRadioButton.setChecked(true);
+                    CheckBox CBox = new CheckBox(rootView.getContext());
+                    checkBoxes.add(CBox);
+                    CBox.setText(S.get(i));
+                    CBox.setTextSize(20);
+                    CBox.setId(i);
+                    CBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+                        @Override
+                        public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                            Toast.makeText(context,"ok",
+                                    Toast.LENGTH_SHORT).show();
+                            RWSelected RWS = new RWSelected(context);
+                            RWS.ClearFile();
+                            for (CheckBox C: checkBoxes) {
+                                if (C.isChecked()){
+                                    Toast.makeText(context,C.getText(),
+                                            Toast.LENGTH_SHORT).show();
+                                    RWS.Write(ldir.getStates().get(langPos), Llist.getStates().get(Llist.getS().get(C.getId())), (String) C.getText());
+                                }
+                            }
+
                     }
-                    newRadioButton.setText(S.get(i));
-                    newRadioButton.setTextSize(20);
-                    newRadioButton.setId(i);
-                    newRadioButton.callOnClick();
-                    radioGroup.addView(newRadioButton);
+                    });
+                    if (i == 0) {
+                        CBox.setChecked(true);
+                    }
+
+                    radioGroup.addView(CBox);
                 }
                 TextView result = (TextView) rootView.findViewById(R.id.textView2);
                 result.setText( parent.getSelectedItem().toString());
@@ -88,20 +107,6 @@ public class Options extends Fragment {
             public void onNothingSelected(AdapterView<?> parent) {
             }
         });
-        radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-
-            @Override
-            public void onCheckedChanged(RadioGroup group, int checkedId) {
-                if(checkedId == -1 )Toast.makeText(context, "Ничего не выбрано",
-                        Toast.LENGTH_SHORT).show();
-                else{
-                    Toast.makeText(context,Llist.getS().get(checkedId),
-                        Toast.LENGTH_SHORT).show();
-                        new RWSelected(context).Write(ldir.getStates().get(langPos),Llist.getStates().get(Llist.getS().get(checkedId)));
-                }
-
-                }
-            });
 
         return rootView;
 

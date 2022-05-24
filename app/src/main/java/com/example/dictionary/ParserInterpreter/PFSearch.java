@@ -7,11 +7,9 @@ import org.jsoup.nodes.Element;
 public class PFSearch {
     private String[] subStr;
     private String word;
-    private View rootView;
     private Element res;
     private boolean acces;
-    public PFSearch(String code, String word, View rootView) {
-        this.rootView = rootView;
+    public PFSearch(String code, String word) {
         this.word = word;
         this.subStr = code.substring(code.indexOf(':')+1, code.length()).replaceAll("\n","").split(";");
         for (String kod:subStr) {
@@ -71,6 +69,10 @@ public class PFSearch {
         else
             return true;
 
+    }
+
+    public boolean isAcces() {
+        return acces;
     }
 
     public Object getRes() {

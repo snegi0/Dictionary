@@ -8,6 +8,7 @@ public class FileReader {
     String fold;
     String name;
     String code;
+
     public FileReader(String fold, String name, Context context) {
         this.fold = fold;
         this.name = name;

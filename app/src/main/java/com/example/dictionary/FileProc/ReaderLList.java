@@ -31,7 +31,8 @@ public class ReaderLList {
             StringBuilder text = new StringBuilder();
             // читаем содержимое
             while ((str = br.readLine()) != null) {
-                String resultStr1 = str.substring(str.indexOf('"')+1 , str.lastIndexOf('"')).trim();
+                String resultStr1 = str.substring(str.indexOf('"')+1 ,
+                        str.lastIndexOf('"')).trim();
                 S.add(resultStr1);
                 String resultStr2 = str.substring(str.lastIndexOf('"')+1, str.length()).trim();
                 states.put(resultStr1,resultStr2);

@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     android:layout_marginLeft="10sp"
     android:layout_marginRight="20sp"
+    android:id="@+id/drawer_layout"
     tools:context=".Search">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -34,13 +35,15 @@
             app:layout_constraintEnd_toEndOf="parent" />
 
         <ScrollView
+            android:id="@+id/scrollView3"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_marginStart="10dp"
             android:layout_marginTop="16dp"
             android:layout_marginEnd="10dp"
             android:scrollbars="vertical"
-            app:layout_constraintBottom_toTopOf="@+id/word_in"
+
+            app:layout_constraintBottom_toTopOf="@+id/horizontalScrollView"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
@@ -48,10 +51,31 @@
 
             <WebView
                 android:id="@+id/result_search"
-                android:layout_width="fill_parent"
-                android:layout_height="fill_parent"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:scrollbars="none" />
         </ScrollView>
+
+
+        <HorizontalScrollView
+            android:id="@+id/horizontalScrollView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toTopOf="@+id/word_in"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent">
+
+            <LinearLayout
+                android:id="@+id/list_result_search"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                >
+
+                </LinearLayout>
+        </HorizontalScrollView>
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

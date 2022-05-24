@@ -39,9 +39,7 @@
                 android:layout_height="wrap_content"
                 android:fadeScrollbars="false"
                 android:isScrollContainer="false"
-                android:overScrollMode="always">
-
-            </RadioGroup>
+                android:overScrollMode="always"/>
         </ScrollView>
 
         <TextView
