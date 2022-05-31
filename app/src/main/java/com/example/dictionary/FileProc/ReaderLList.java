@@ -2,7 +2,7 @@ package com.example.dictionary.FileProc;
 
 import android.content.Context;
 
-import androidx.collection.ArraySet;
+import androidx.annotation.NonNull;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -18,9 +18,9 @@ public class ReaderLList {
     private File file;
     private Map<String, String> states;
     private ArrayList<String> S;
-    public ReaderLList(Context context, String DIR) {
+    public ReaderLList(@NonNull Context context, String DIR) {
         this.context = context;
-        FileDir = context.getDir(DIR ,context.MODE_PRIVATE);
+        FileDir = context.getDir(DIR , Context.MODE_PRIVATE);
         file = new File(FileDir,"list");
         states = new HashMap<String, String>();
         S = new ArrayList<String>();

@@ -2,13 +2,8 @@ package com.example.dictionary;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
-import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
-
-import androidx.annotation.RequiresApi;
-import androidx.fragment.app.Fragment;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,25 +11,21 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
-import android.widget.LinearLayout;
-import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.RequiresApi;
+import androidx.fragment.app.Fragment;
+
 import com.example.dictionary.FileProc.RWSelected;
 import com.example.dictionary.FileProc.ReadLDIR;
 import com.example.dictionary.FileProc.ReaderLList;
 
-import org.jsoup.Jsoup;
-import org.jsoup.nodes.Document;
-import org.jsoup.nodes.Element;
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -84,15 +75,19 @@ public class Options extends Fragment {
                             Toast.makeText(context,"ok",
                                     Toast.LENGTH_SHORT).show();
                             RWSelected RWS = new RWSelected(context);
-                            RWS.ClearFile();
+                            JSONArray checks = new JSONArray();
                             for (CheckBox C: checkBoxes) {
                                 if (C.isChecked()){
                                     Toast.makeText(context,C.getText(),
                                             Toast.LENGTH_SHORT).show();
-                                    RWS.Write(ldir.getStates().get(langPos), Llist.getStates().get(Llist.getS().get(C.getId())), (String) C.getText());
+                                    JSONObject jsonObject = new JSONObject();
+                                    jsonObject.put("folder", ldir.getStates().get(langPos));
+                                    jsonObject.put("file_name",Llist.getStates().get(Llist.getS().get(C.getId())));
+                                    jsonObject.put("d_name",(String) C.getText());
+                                    checks.add(jsonObject);
                                 }
                             }
-
+                            RWS.Write(checks.toString());
                     }
                     });
                     if (i == 0) {
