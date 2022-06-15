@@ -1,35 +1,13 @@
 package com.example.dictionary;
 
-import android.app.Activity;
-import android.content.Intent;
 import android.os.Bundle;
 
-import com.example.dictionary.ui.main.SectionsPagerAdapter;
-import com.google.android.material.tabs.TabItem;
-import com.google.android.material.tabs.TabLayout;
-
-import androidx.annotation.NonNull;
-import androidx.fragment.app.FragmentPagerAdapter;
-import androidx.fragment.app.FragmentResultListener;
-import androidx.viewpager.widget.ViewPager;
 import androidx.appcompat.app.AppCompatActivity;
-
-import android.os.Parcelable;
-import android.view.View;
-import android.widget.ArrayAdapter;
-import android.widget.RadioGroup;
-import android.widget.Spinner;
-import android.widget.TextView;
+import androidx.viewpager.widget.ViewPager;
 
 import com.example.dictionary.databinding.ActivityMainBinding;
-
-import org.jsoup.Jsoup;
-import org.jsoup.nodes.Document;
-import org.jsoup.nodes.Element;
-
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
+import com.example.dictionary.ui.main.SectionsPagerAdapter;
+import com.google.android.material.tabs.TabLayout;
 
 public class MainActivity<AndroidBasicThreadActivity> extends AppCompatActivity {
 
@@ -50,11 +28,11 @@ public class MainActivity<AndroidBasicThreadActivity> extends AppCompatActivity 
 
 
 
-          FileProces m = new FileProces(this);
-//        m.setcod();
-//        m.CreateLdir();
-//        m.CreateENdir();
-//        m.CreateRUdir();
+        FileProces m = new FileProces(this);
+        //m.setcod();
+        m.CreateLdir();
+        m.CreateENdir();
+        m.CreateRUdir();
 
         //Intent intent = new Intent(this, Options.class);
         //intent.putExtra("spiner", (Spinner) findViewById(R.id.spinner_language));

@@ -1,7 +1,0 @@
-pars_for_search:
-request*("type","site","q")
-chek("");
-select_element(1,"");
-select_elements(1,"");
-pars_for_word:
-delete_element(1,"");

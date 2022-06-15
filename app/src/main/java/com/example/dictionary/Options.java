@@ -14,7 +14,6 @@ import android.widget.CompoundButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
@@ -72,14 +71,10 @@ public class Options extends Fragment {
                     CBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
                         @Override
                         public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                            Toast.makeText(context,"ok",
-                                    Toast.LENGTH_SHORT).show();
                             RWSelected RWS = new RWSelected(context);
                             JSONArray checks = new JSONArray();
                             for (CheckBox C: checkBoxes) {
                                 if (C.isChecked()){
-                                    Toast.makeText(context,C.getText(),
-                                            Toast.LENGTH_SHORT).show();
                                     JSONObject jsonObject = new JSONObject();
                                     jsonObject.put("folder", ldir.getStates().get(langPos));
                                     jsonObject.put("file_name",Llist.getStates().get(Llist.getS().get(C.getId())));
@@ -90,9 +85,9 @@ public class Options extends Fragment {
                             RWS.Write(checks.toString());
                     }
                     });
-                    if (i == 0) {
+                    //if (i == 0) {
                         CBox.setChecked(true);
-                    }
+                    //}
 
                     radioGroup.addView(CBox);
                 }

@@ -17,14 +17,16 @@ public class FileProces {
     }
     public void setcod(){
         FileDir = context.getDir("EN",context.MODE_PRIVATE);
-        file = new File(FileDir,"MerriamWeb.psc");
+        file = new File(FileDir,"OxfordLD.psc");
         try {
             FileOutputStream is = new FileOutputStream(file);
             is.write(("pars_for_search:\n" +
-                    "request(site ,\"https://www.merriam-webster.com/dictionary/\");\n" +
-                    "chek(\"div[class=\"widget spelling-suggestion\"]\");\n" +
-                    "pars_for_word:\n" +
-                    "delete_element(1,\"\");").getBytes());
+                    "request(get ,\"https://www.oxfordlearnersdictionaries.com/search/english/\",\"?q=\");\n" +
+                    "chek(\"div[id=\"results-container-all\"]\");\n" +
+                    "pars_for_word:" +
+                    "select_element(body, bodyres,\"div[id=ox-wrapper]\");\n" +
+                    "clear_body();\n" +
+                    "insert(bodyres,body);").getBytes());
             is.close();
         }  catch (IOException e) {
             e.printStackTrace();
@@ -56,7 +58,22 @@ public class FileProces {
         file = new File(FileDir,"OxfordLD.psc");
         try {
             FileOutputStream is = new FileOutputStream(file);
-            is.write(("").getBytes());
+            is.write(("pars_for_search:\n" +
+                    "request(get ,\"https://www.oxfordlearnersdictionaries.com/search/english/\",\"?q=\");\n" +
+                    "chek(\"div[id=\"results-container-all\"]\");\n" +
+                    "pars_for_word:\n" +
+                    "select_element(body, bodyres,\"div[id=\"ox-header\"]\");\n" +
+                    "remove(bodyres);\n" +
+                    "select_element(body, bodyres,\"div[id=\"searchbar\"]\");\n" +
+                    "remove(bodyres);\n" +
+                    "select_element(body, bodyres,\"div[class=\"responsive_entry_center_left\"]\");\n" +
+                    "remove(bodyres);\n" +
+                    "select_element(body, bodyres,\"div[id=\"ring-links-box\"]\");\n" +
+                    "remove(bodyres);\n" +
+                    "select_element(body, bodyres,\"div[id=\"rightcolumn\"]\");\n" +
+                    "remove(bodyres);\n" +
+                    "select_element(body, bodyres,\"footer[id=\"ox-footer\"]\");\n" +
+                    "remove(bodyres);" ).getBytes());
             is.close();
         }  catch (IOException e) {
             e.printStackTrace();
@@ -64,7 +81,13 @@ public class FileProces {
         file = new File(FileDir,"CambridgeD.psc");
         try {
             FileOutputStream is = new FileOutputStream(file);
-            is.write(("").getBytes());
+            is.write(("pars_for_search:\n" +
+                    "request(get ,\"https://dictionary.cambridge.org/search/direct/\",\"?datasetsearch=english&q=\");\n" +
+                    "chek(\"ul[class=\"hul-u\"]\");\n" +
+                    "pars_for_word:addCSS_site(\"https://dictionary.cambridge.org/common.css?version=5.0.243\");\n" +
+                    "select_element(body, bodyres,\"div[class=entry]\");\n" +
+                    "clear_body();\n" +
+                    "insert(bodyres,body);").getBytes());
             is.close();
         }  catch (IOException e) {
             e.printStackTrace();
@@ -72,7 +95,14 @@ public class FileProces {
         file = new File(FileDir,"MerriamWeb.psc");
         try {
             FileOutputStream is = new FileOutputStream(file);
-            is.write(("").getBytes());
+            is.write(("pars_for_search:\n" +
+                    "request(site ,\"https://www.merriam-webster.com/dictionary/\");\n" +
+                    "chek(\"div[class=\"widget spelling-suggestion\"]\");\n" +
+                    "pars_for_word:\n" +
+                    "select_element(body, bodyres,\"div[class=\"menu-filler\"]\");\n" +
+                    "remove(bodyres);\n" +
+                    "select_element(body, bodyres,\"header[class=\"shrinkheader\"]\");\n" +
+                    "remove(bodyres);").getBytes());
             is.close();
         }  catch (IOException e) {
             e.printStackTrace();
@@ -84,7 +114,7 @@ public class FileProces {
         try {
             FileOutputStream is = new FileOutputStream(file);
             is.write(("\"Толковые онлайн-словари " +
-                    "русского языка\" lexicography.psc\n").getBytes());
+                    "русского языка(не работает)\" lexicography.psc\n").getBytes());
             is.close();
         }  catch (IOException e) {
             e.printStackTrace();

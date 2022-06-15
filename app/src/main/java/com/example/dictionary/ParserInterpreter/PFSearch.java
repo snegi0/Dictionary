@@ -1,13 +1,12 @@
 package com.example.dictionary.ParserInterpreter;
 
-import android.view.View;
-
+import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 
 public class PFSearch {
     private String[] subStr;
     private String word;
-    private Element res;
+    private Document res;
     private boolean acces;
     public PFSearch(String code, String word) {
         this.word = word;

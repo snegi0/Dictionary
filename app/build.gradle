@@ -38,6 +38,7 @@ dependencies {
     implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.4.1'
     implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.4.1'
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+    implementation "androidx.webkit:webkit:1.4.0"
     implementation 'org.jsoup:jsoup:1.14.3'
     implementation 'com.googlecode.json-simple:json-simple:1.1.1'
     implementation 'androidx.fragment:fragment-ktx:1.4.1'
