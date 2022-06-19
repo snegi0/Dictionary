@@ -81,10 +81,13 @@ public class FileProces {
         file = new File(FileDir,"CambridgeD.psc");
         try {
             FileOutputStream is = new FileOutputStream(file);
+
             is.write(("pars_for_search:\n" +
                     "request(get ,\"https://dictionary.cambridge.org/search/direct/\",\"?datasetsearch=english&q=\");\n" +
                     "chek(\"ul[class=\"hul-u\"]\");\n" +
-                    "pars_for_word:addCSS_site(\"https://dictionary.cambridge.org/common.css?version=5.0.243\");\n" +
+                    "pars_for_word:\n" +
+                    "addCSS_site(\"https://dictionary.cambridge.org/common.css?version=5.0.243\");\n" +
+                    "addCSS_site(\"https://raw.githubusercontent.com/snegi0/Dictionary/master/app/src/main/res/tmp/1.css\");\n" +
                     "select_element(body, bodyres,\"div[class=entry]\");\n" +
                     "clear_body();\n" +
                     "insert(bodyres,body);").getBytes());
