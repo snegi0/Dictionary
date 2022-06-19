@@ -97,7 +97,7 @@ public class FileProces {
             FileOutputStream is = new FileOutputStream(file);
             is.write(("pars_for_search:\n" +
                     "request(site ,\"https://www.merriam-webster.com/dictionary/\");\n" +
-                    "chek(\"div[class=\"widget spelling-suggestion\"]\");\n" +
+                    "chek(\"p[class=\"spelling-suggestions\"]\");\n" +
                     "pars_for_word:\n" +
                     "select_element(body, bodyres,\"div[class=\"menu-filler\"]\");\n" +
                     "remove(bodyres);\n" +

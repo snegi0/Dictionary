@@ -62,12 +62,13 @@ public class PFSearch {
 
     boolean Chek(String in){
         String query = in.substring(in.indexOf('"')+1, in.lastIndexOf('"'));
-        Element C = res.select(query).first();
-        if (C != null)
-            return false;
-        else
-            return true;
-
+        if (res != null) {
+            Element C = res.select(query).first();
+            if (C != null)
+                return false;
+        }
+        else return false;
+        return true;
     }
 
     public boolean isAcces() {

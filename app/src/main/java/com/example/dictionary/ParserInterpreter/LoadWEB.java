@@ -6,7 +6,7 @@ import org.jsoup.nodes.Document;
 import java.io.IOException;
 
 public class LoadWEB {
-    private static Document res;
+    private Document res;
 
 
     public LoadWEB(String url_q) throws InterruptedException {
@@ -31,7 +31,7 @@ public class LoadWEB {
     }
 
 
-    public static Document getRes() {
+    public Document getRes() {
         return res;
     }
 }

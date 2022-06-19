@@ -6,12 +6,15 @@ import android.os.Build;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.view.ContextThemeWrapper;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.EditorInfo;
+import android.view.inputmethod.InputMethodManager;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
-import android.widget.AutoCompleteTextView;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -42,6 +45,7 @@ public class Search extends Fragment {
     Map<String,PFSearch> pfSearchMap;
     Map<String,WebView> webVievmap;
     Map<String,Document> document_map;
+
     @SuppressLint("SetJavaScriptEnabled")
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -69,27 +73,45 @@ public class Search extends Fragment {
         int width = displayMetrics.widthPixels;
 
 
-
-
+        EditText search_w = rootView.findViewById(R.id.word_in);
+//
+        search_w.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView textView, int i, KeyEvent keyEvent) {
+                if (i == EditorInfo.IME_ACTION_SEARCH) {
+                    button.callOnClick();
+                    return true;
+                }
+                return false;
+            }
+        });
+//Click button search
         button.setOnClickListener(new View.OnClickListener() {
             @RequiresApi(api = Build.VERSION_CODES.N)
             @Override
             public void onClick(View v) {
-                AutoCompleteTextView search_w = rootView.findViewById(R.id.word_in);
+
+                InputMethodManager imm = (InputMethodManager) context.getSystemService(context.INPUT_METHOD_SERVICE);
+                imm.hideSoftInputFromWindow(button.getWindowToken(),
+                        InputMethodManager.HIDE_NOT_ALWAYS);
+
+
+
                 String message = search_w.getText().toString().replaceAll("( +)"," ").trim();
                 RWSelected rwSelected = new RWSelected(context);
-                result.loadDataWithBaseURL(null, Preloader.get(), "text/html", "utf-8", null);
 
-                pfSearchMap = new HashMap<String,PFSearch>();
-                document_map =  new HashMap<String,Document>();
 
-                webVievmap = new HashMap<String,WebView>();
-                linearLayout.removeAllViews();
                 if(message.equals("")){
+                    if(message.equals(""))
                     Toast.makeText(rootView.getContext(), "ERROR", Toast.LENGTH_SHORT).show();
                 }
                 else {
                     JSONArray search = rwSelected.Read();
+                    result.loadDataWithBaseURL(null, Preloader.get(), "text/html", "utf-8", null);
+                    pfSearchMap = new HashMap<String,PFSearch>();
+                    document_map =  new HashMap<String,Document>();
+                    webVievmap = new HashMap<String,WebView>();
+                    linearLayout.removeAllViews();
                     //ArrayList<PFSearch> pfSearchs= new ArrayList<PFSearch>();
                     ArrayList<TextView> seached_dict_list = new ArrayList<TextView>();
                     ArrayList<Thread> T_list = new ArrayList<Thread>();
@@ -115,7 +137,7 @@ public class Search extends Fragment {
                                     LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
                                     params.setMargins(10, 5, 10, 5);
                                     textView.setLayoutParams(params);
-
+                                    textView.setMaxWidth(width/2);
 
                                     textView.setOnClickListener(new View.OnClickListener() {
                                         @Override

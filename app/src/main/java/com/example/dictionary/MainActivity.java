@@ -3,6 +3,7 @@ package com.example.dictionary;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
 import androidx.viewpager.widget.ViewPager;
 
 import com.example.dictionary.databinding.ActivityMainBinding;
@@ -24,7 +25,7 @@ public class MainActivity<AndroidBasicThreadActivity> extends AppCompatActivity 
         viewPager.setAdapter(sectionsPagerAdapter);
         TabLayout tabs = binding.tabs;
         tabs.setupWithViewPager(viewPager);
-
+        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
 
 
 
